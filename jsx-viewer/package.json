@@ -1,0 +1,23 @@
+{
+  "name": "jsx-viewer",
+  "version": "1.0.0",
+  "description": "Standalone Windows 11 desktop application for previewing JSX files derived from ChatGPT prompts.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "echo 'No lint step configured'",
+    "package": "electron-packager . JSXViewer --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/standalone": "^7.23.10",
+    "electron": "^27.3.6",
+    "fs-extra": "^11.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.1"
+  }
+}
