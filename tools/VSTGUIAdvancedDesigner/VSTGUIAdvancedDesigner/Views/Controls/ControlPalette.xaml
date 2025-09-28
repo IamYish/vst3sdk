@@ -1,0 +1,32 @@
+<UserControl x:Class="VSTGUIAdvancedDesigner.Views.Controls.ControlPalette"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="800"
+             d:DesignHeight="120">
+    <Border Background="#FF252525" Padding="8" CornerRadius="6">
+        <DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,8">
+                <TextBlock Text="Control Palette" Foreground="White" FontWeight="SemiBold" />
+                <Button Content="Add Control" Command="{Binding AddSelectedControlCommand}" Margin="12,0,0,0" Style="{StaticResource ToolbarButtonStyle}" />
+            </StackPanel>
+            <ListBox ItemsSource="{Binding Controls}"
+                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                     ItemTemplate="{StaticResource ControlPaletteItemTemplate}"
+                     Background="#FF2F2F2F"
+                     Foreground="White"
+                     BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     Height="100">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </DockPanel>
+    </Border>
+</UserControl>
