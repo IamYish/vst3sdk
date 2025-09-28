@@ -1,0 +1,85 @@
+<UserControl x:Class="VSTGUIAdvancedDesigner.Views.Controls.PropertiesPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignWidth="300"
+             d:DesignHeight="600">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="Properties" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,8" />
+            <Border Background="#FF2F2F2F" Padding="8" CornerRadius="6">
+                <StackPanel>
+                    <TextBlock Text="Control" Foreground="#FFB5B5B5" Margin="0,0,0,4" />
+                    <TextBox Text="{Binding SelectedControl.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" />
+                    <UniformGrid Columns="2" Margin="0,0,0,8">
+                        <StackPanel Margin="0,0,8,0">
+                            <TextBlock Text="X" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Y" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </UniformGrid>
+                    <UniformGrid Columns="2" Margin="0,0,0,8">
+                        <StackPanel Margin="0,0,8,0">
+                            <TextBlock Text="Width" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Height" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </UniformGrid>
+                    <UniformGrid Columns="2" Margin="0,0,0,8">
+                        <StackPanel Margin="0,0,8,0">
+                            <TextBlock Text="Rotation" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.Rotation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="Opacity" Foreground="#FFB5B5B5" />
+                            <TextBox Text="{Binding SelectedControl.Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </UniformGrid>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                        <ToggleButton Content="Visible" IsChecked="{Binding SelectedControl.IsVisible, Mode=TwoWay}" Margin="0,0,8,0" />
+                        <ToggleButton Content="Locked" IsChecked="{Binding SelectedControl.IsLocked, Mode=TwoWay}" />
+                    </StackPanel>
+                    <TextBlock Text="Parameter" Foreground="#FFB5B5B5" />
+                    <TextBox Text="{Binding SelectedControl.ParameterId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" />
+                    <TextBlock Text="Bitmap" Foreground="#FFB5B5B5" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Text="{Binding SelectedControl.BitmapAsset, Mode=TwoWay}" Width="200" Margin="0,0,6,0" />
+                        <Button Content="Assign" Command="{Binding AssignBitmapCommand}" Style="{StaticResource ToolbarButtonStyle}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#FF2F2F2F" Padding="8" CornerRadius="6" Margin="0,12,0,0">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Animation" Foreground="#FFB5B5B5" />
+                        <Button Content="Enable" Command="{Binding EnsureAnimationCommand}" Margin="12,0,0,0" Style="{StaticResource ToolbarButtonStyle}" />
+                        <Button Content="Disable" Command="{Binding RemoveAnimationCommand}" Margin="6,0,0,0" Style="{StaticResource ToolbarButtonStyle}" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding AnimationFrames}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#FF4F4F4F" BorderThickness="1" Padding="6" Margin="0,0,0,6">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding AssetPath}" Width="180" TextTrimming="CharacterEllipsis" Foreground="{StaticResource PanelTextBrush}" Margin="0,0,8,0" />
+                                        <TextBox Text="{Binding Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="60" Margin="0,0,8,0" />
+                                        <Button Content="Remove" Command="{Binding DataContext.RemoveFrameCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" Style="{StaticResource ToolbarButtonStyle}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Content="Add Frame" Command="{Binding AddFrameCommand}" Style="{StaticResource ToolbarButtonStyle}" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
