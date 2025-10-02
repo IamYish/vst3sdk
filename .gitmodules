@@ -19,3 +19,6 @@
 [submodule "vstgui4"]
 	path = vstgui4
 	url = ../vstgui
+[submodule "projects/adsp21xx_pad32"]
+	path = projects/adsp21xx_pad32
+	url = ../adsp21xx_pad32
